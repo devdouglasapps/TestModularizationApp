@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "997301223288",
+    "project_id": "test-mod-app",
+    "storage_bucket": "test-mod-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997301223288:android:fa9ec8c68ae1d55e1d928d",
+        "android_client_info": {
+          "package_name": "com.example.testmodularizationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKpSO7h9EU-v4WyD2_-cZEvv4YTf3qkVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
