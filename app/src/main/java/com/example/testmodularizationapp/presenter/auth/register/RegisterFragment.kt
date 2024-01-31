@@ -1,20 +1,23 @@
 package com.example.testmodularizationapp.presenter.auth.register
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import br.com.hellodev.netflix.util.FirebaseHelper
 import com.bumptech.glide.Glide
 import com.example.testmodularizationapp.R
 import com.example.testmodularizationapp.databinding.FragmentRegisterBinding
+import com.example.testmodularizationapp.presenter.main.activity.MainActivity
 import com.example.testmodularizationapp.presenter.auth.forgot.initToolbar
 import com.example.testmodularizationapp.util.StateView
 import com.example.testmodularizationapp.util.hideKeyboard
 import com.example.testmodularizationapp.util.isEmailValid
+import com.example.testmodularizationapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,10 +61,10 @@ class RegisterFragment : Fragment() {
                 hideKeyboard()
                 register(email, password)
             } else {
-
+                showSnackBar(message = R.string.text_password_empty_register_fragment)
             }
         } else {
-            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+           showSnackBar(message = R.string.text_email_empty_register_fragment)
         }
     }
 
@@ -73,16 +76,15 @@ class RegisterFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Cadastro realizado com sucesso",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
                 }
 
                 is StateView.Error<*> -> {
                     binding.progressLoading.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showSnackBar(
+                        message = FirebaseHelper.validError(error= stateView.message ?: "")
+                    )
                 }
             }
         }
