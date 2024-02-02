@@ -1,18 +1,14 @@
 package com.example.testmodularizationapp.presenter.main.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.testmodularizationapp.R
 import com.example.testmodularizationapp.databinding.ActivityMainBinding
-import com.example.testmodularizationapp.databinding.FragmentRegisterBinding
-import com.example.testmodularizationapp.presenter.auth.forgot.ForgotFragment
-import com.example.testmodularizationapp.presenter.auth.login.LoginFragment
-import com.example.testmodularizationapp.presenter.auth.register.RegisterFragment
+import com.google.firebase.database.collection.BuildConfig
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initNavigation()
-
+        BuildConfig.APPLICATION_ID
     }
 
     private fun initNavigation() {
